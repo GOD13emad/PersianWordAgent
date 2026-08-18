@@ -4,13 +4,19 @@
 
 > این مخزن برای انتشار نسخه‌های اجرایی PersianWordAgent است. کد منبع برنامه در این مخزن منتشر نمی‌شود.
 
-## Current public milestone
+## Current public release
 
-**QH01 Accepted Preview — dev41**
+**Version 1.0.0 — QH01 Accepted Preview**
 
-The accepted QH01 build has completed controlled technical, Microsoft Word pagination, TOC freshness, and final desktop GUI validation.
+- Release tag: `v1.0.0-qh01-preview`
+- Public product version: `1.0.0`
+- Windows file version: `1.0.0.0`
+- Validated internal engine baseline: `2.0.0-m3.3-dev41`
+- Distribution: Windows x64 binary only
 
-Key validated behaviors include:
+The internal engine baseline identifies the accepted development engine used to build the public Version 1 package; it is not the public product version.
+
+## Validated capabilities
 
 - Persian/RTL document handling
 - profile-based document classification and repair
@@ -44,13 +50,17 @@ Do not attach confidential Word documents, private evidence packages, credential
 
 ## Release verification
 
-Every official release should include a `SHA256SUMS.txt` file. Verify the SHA-256 hash of downloaded packages before use.
+Every official release includes a `SHA256SUMS.txt` file. Verify the SHA-256 hash of downloaded packages before use.
+
+Current Windows x64 Version 1 package SHA-256:
+
+`0DFF8B2FAD92DE03DB91C33BDCC8FCA6914ECF1B4B8D41694952D4ECED336906`
 
 ## Project status
 
 - QH01: **ACCEPTED**
+- Public release: **Version 1.0.0 preview**
 - Next development phase: **FD01**
-- Current public channel: preview/binary release
 
 ## License
 
