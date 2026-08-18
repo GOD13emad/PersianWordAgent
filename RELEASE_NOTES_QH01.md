@@ -1,8 +1,13 @@
-# Persian WordAgent — QH01 Accepted Preview
+# Persian WordAgent — Version 1.0.0 QH01 Accepted Preview
 
-Tag: `v2.0.0-qh01-preview`
+Tag: `v1.0.0-qh01-preview`
 
-This preview release is based on the QH01-accepted `2.0.0-m3.3-dev41` engine baseline.
+Public product version: `1.0.0`  
+Windows file version: `1.0.0.0`  
+Informational version: `1.0.0-qh01-preview`  
+Validated internal engine baseline: `2.0.0-m3.3-dev41`
+
+The internal engine baseline identifies the accepted development engine used to build this Version 1 package. It is not the public product version.
 
 ## What is included
 
@@ -26,7 +31,7 @@ This preview release is based on the QH01-accepted `2.0.0-m3.3-dev41` engine bas
 
 ## Acceptance evidence summary
 
-- Engine baseline: `2.0.0-m3.3-dev41`
+- Internal engine baseline: `2.0.0-m3.3-dev41`
 - Final GUI acceptance: PASS
 - Manual GUI checks: 8/8 YES + explicit PASS
 - Accepted validation document: 14 pages in Microsoft Word
@@ -34,6 +39,16 @@ This preview release is based on the QH01-accepted `2.0.0-m3.3-dev41` engine bas
 - Final explicit/cached Gantt page breaks: 0
 - TOC page numbers: fresh
 - DevRoot accepted graph: 47/47
+- Public binary privacy scan: 0 private-path hits
+- GitHub assets: 4/4 re-downloaded and SHA/size verified
+
+## Official Version 1 package
+
+`PersianWordAgent-v1.0.0-Windows-x64.zip`
+
+SHA-256:
+
+`0DFF8B2FAD92DE03DB91C33BDCC8FCA6914ECF1B4B8D41694952D4ECED336906`
 
 ## Important limitations
 
