@@ -4,63 +4,49 @@
 
 > این مخزن برای انتشار نسخه‌های اجرایی PersianWordAgent است. کد منبع برنامه در این مخزن منتشر نمی‌شود.
 
-## Current public release
+## Current release
 
-**Version 1.0.0 — QH01 Accepted Preview**
-
-- Release tag: `v1.0.0-qh01-preview`
-- Public product version: `1.0.0`
-- Windows file version: `1.0.0.0`
-- Validated internal engine baseline: `2.0.0-m3.3-dev41`
-- Distribution: Windows x64 binary only
-
-The internal engine baseline identifies the accepted development engine used to build the public Version 1 package; it is not the public product version.
-
-## Validated capabilities
-
-- Persian/RTL document handling
-- profile-based document classification and repair
-- controlled-copy workflow (original input remains unchanged)
-- Word-native Table of Contents refresh
-- heading, table, caption, and pagination integrity gates
-- fail-closed checks for unsupported or unsafe states
-- final Microsoft Word rendering validation
-
-## Distribution model
-
-This is a **binary-release-only** repository.
-
-- Source code is **not published** here.
-- Official Windows binaries are distributed only through this repository's **Releases** page.
-- Do not download PersianWordAgent from unofficial mirrors.
-- See `LICENSE.txt` for permitted use and restrictions.
-
-## Requirements
+**Persian WordAgent 1.0.0**
 
 - Windows x64
-- Microsoft Word desktop for Word-native document operations
+- Microsoft Word desktop required for Word-native operations
+- Binary-only distribution
 
-## Safety model
+### Download
 
-PersianWordAgent is designed around controlled copies and explicit validation gates. The application should not be treated as a substitute for retaining backups of important documents.
+Download the Windows package from the repository's **Releases** page:
 
-## Privacy
+`PersianWordAgent-v1.0.0-Windows-x64.zip`
 
-Do not attach confidential Word documents, private evidence packages, credentials, access tokens, or organization-internal files to public GitHub issues.
-
-## Release verification
-
-Every official release includes a `SHA256SUMS.txt` file. Verify the SHA-256 hash of downloaded packages before use.
-
-Current Windows x64 Version 1 package SHA-256:
+SHA-256:
 
 `0DFF8B2FAD92DE03DB91C33BDCC8FCA6914ECF1B4B8D41694952D4ECED336906`
 
-## Project status
+## Capabilities
 
-- QH01: **ACCEPTED**
-- Public release: **Version 1.0.0 preview**
-- Next development phase: **FD01**
+- Persian/RTL document handling
+- profile-based document classification and repair
+- controlled-copy workflow so the original input remains unchanged
+- Word-native Table of Contents refresh
+- heading, table, caption, and pagination integrity checks
+- fail-closed handling for unsupported or unsafe states
+- Microsoft Word rendering validation
+
+## Safety
+
+Keep backups of important documents. PersianWordAgent uses controlled copies and validation gates, but it should not replace normal document backup practices.
+
+## Privacy
+
+Do not attach confidential Word documents, credentials, access tokens, private evidence packages, or organization-internal files to public GitHub issues.
+
+## Verification
+
+Every official release includes `SHA256SUMS.txt`. Verify the SHA-256 checksum of the downloaded package before use.
+
+## Distribution
+
+PersianWordAgent is distributed as official Windows binaries through this repository's **Releases** page. Source code is not included in the public distribution.
 
 ## License
 
