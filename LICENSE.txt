@@ -1,0 +1,50 @@
+PersianWordAgent Binary Distribution License 1.0
+
+Copyright (c) 2026 GOD13emad. All rights reserved.
+
+This license applies to official compiled/binary releases of PersianWordAgent distributed by the copyright holder through the official GitHub repository and its Releases page.
+
+1. PERMITTED USE
+You are granted a limited, non-exclusive right to download and use unmodified official PersianWordAgent binaries for:
+(a) personal use;
+(b) educational use; and
+(c) internal use within a business, institution, or organization.
+
+2. NO SOURCE-CODE LICENSE
+Source code is not licensed or distributed under this license. This license is not an open-source license and does not grant rights to obtain, publish, modify, or distribute the source code.
+
+3. REDISTRIBUTION
+You may share links to the official PersianWordAgent GitHub repository or official GitHub Release pages.
+You may not re-upload, mirror, host, republish, bundle, or redistribute PersianWordAgent binary files through another website, repository, marketplace, file host, channel, installer bundle, or distribution service without prior written permission from the copyright holder.
+
+4. COMMERCIAL RESTRICTIONS
+You may use PersianWordAgent internally in commercial or organizational work. You may not sell, rent, lease, sublicense, resell, charge for access to, or commercially redistribute PersianWordAgent itself without prior written permission from the copyright holder.
+
+5. MODIFICATION AND DERIVATIVE DISTRIBUTION
+You may not modify, patch, repackage, rename, alter, or distribute modified or derivative versions of PersianWordAgent without prior written permission from the copyright holder.
+
+6. REVERSE ENGINEERING
+You may not reverse engineer, decompile, or disassemble PersianWordAgent except to the limited extent that such restriction is prohibited by applicable law.
+
+7. NAME, BRANDING, AND ENDORSEMENT
+This license grants no trademark or branding rights. You may not use the PersianWordAgent name, logo, or project identity in a way that falsely suggests an official release, sponsorship, certification, or endorsement.
+
+8. OWNERSHIP
+PersianWordAgent and all associated intellectual-property rights remain the property of the copyright holder. No ownership rights are transferred by this license.
+
+9. UPDATES AND SEPARATE TERMS
+Future releases may be distributed under updated or different license terms. The license included with a specific release governs that release.
+
+10. DISCLAIMER OF WARRANTY
+PERSIANWORDAGENT IS PROVIDED "AS IS" AND "AS AVAILABLE", WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, ACCURACY, OR RELIABILITY.
+
+11. LIMITATION OF LIABILITY
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE COPYRIGHT HOLDER SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, EXEMPLARY, OR OTHER DAMAGES ARISING FROM OR RELATED TO THE USE OF, INABILITY TO USE, OR RELIANCE ON PERSIANWORDAGENT.
+
+12. TERMINATION
+Your rights under this license terminate automatically if you materially violate these terms. Upon termination, you must stop using and delete copies of PersianWordAgent obtained or retained in violation of this license.
+
+13. NO IMPLIED RIGHTS
+Any rights not expressly granted by this license are reserved by the copyright holder.
+
+By downloading, installing, copying, or using an official PersianWordAgent binary, you agree to these terms.
