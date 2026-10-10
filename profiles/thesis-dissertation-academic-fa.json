@@ -1,0 +1,137 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "id": "thesis-dissertation-academic-fa",
+  "displayName": "رساله / پایان‌نامه / پروپوزال دانشگاهی فارسی",
+  "version": "2.1.0",
+  "documentClass": "ThesisDissertationAcademic",
+  "classification": {
+    "keywords": [
+      "رساله",
+      "پایان‌نامه",
+      "چکیده",
+      "مروری بر ادبیات",
+      "روش تحقیق",
+      "فصل"
+    ],
+    "negativeKeywords": [
+      "کارفرما",
+      "شرح خدمات"
+    ],
+    "styleSignals": [
+      "فصل",
+      "عنوان پایان‌نامه",
+      "زیرنویس شکل",
+      "بالانویس جدول",
+      "پاورقی"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "متن",
+      "Normal",
+      "(unknown)"
+    ],
+    "BodyContinuous": [
+      "متن پیوسته",
+      "متن پيوسته"
+    ],
+    "Heading1": [
+      "تیتر اول",
+      "تيتر اول",
+      "Heading 1"
+    ],
+    "Heading2": [
+      "تیتر دوم",
+      "تيتر دوم",
+      "Heading 2"
+    ],
+    "Heading3": [
+      "تیتر سوم",
+      "تيتر سوم",
+      "Heading 3"
+    ],
+    "Chapter": [
+      "فصل"
+    ],
+    "DocumentTitle": [
+      "عنوان پایان‌نامه",
+      "عنوان پايان‌نامه",
+      "Title"
+    ],
+    "FigureCaption": [
+      "زیرنویس شکل",
+      "زيرنويس شکل",
+      "Caption"
+    ],
+    "TableCaption": [
+      "بالانویس جدول",
+      "بالانويس جدول"
+    ],
+    "Footnote": [
+      "پاورقی"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 14
+    },
+    "TableHeader": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "TableBody": {
+      "alignment": null
+    },
+    "TocTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocField": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    }
+  },
+  "rules": [
+    "FIELD-PRESERVE-001",
+    "ENDNOTE-GUARD-001"
+  ],
+  "schemaVersion": "2.0",
+  "detectionPolicy": {
+    "enabled": false,
+    "priority": 0,
+    "minScore": 20
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": "TableHeader"
+    },
+    "invocation": {
+      "role": null,
+      "exactCompactTexts": []
+    },
+    "coverSubtitle": {
+      "role": null,
+      "styleNames": [],
+      "maxParagraphIndex": null
+    },
+    "figureTableCaption": {
+      "role": "TableCaption",
+      "prefixes": [
+        "جدول"
+      ],
+      "requireParenthesizedTwoPartNumber": false
+    }
+  }
+}

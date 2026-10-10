@@ -1,0 +1,100 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="UiWindowTitle">وردایجنت دسکتاپ — فارسی‌سازی و اعمال تمپلیت</system:String>
+    <system:String x:Key="UiProductTitle">وردایجنت دسکتاپ</system:String>
+    <system:String x:Key="UiProductSubtitle">تشخیص نوع سند، اصلاح کنترل‌شده فارسی و اعمال تمپلیت — هسته قابل‌ممیزی و بدون وابستگی اجباری به هوش مصنوعی</system:String>
+
+    <system:String x:Key="UiDocxLabel">فایل ورودی:</system:String>
+    <system:String x:Key="UiSelectFile">انتخاب فایل</system:String>
+    <system:String x:Key="UiOutputFolderLabel">پوشه خروجی:</system:String>
+    <system:String x:Key="UiSelectFolder">انتخاب پوشه</system:String>
+
+    <system:String x:Key="UiModeGenericTab">فارسی‌سازی عمومی</system:String>
+    <system:String x:Key="UiGenericDescription">برای اصلاح کامل، «تشخیص و اصلاح هوشمند» را اجرا کنید. حالت عمومی فقط قواعد کم‌ریسک RTL و تراز را روی یک کپی اعمال می‌کند.</system:String>
+    <system:String x:Key="UiGenericScope">اصلاح عمومی RTL: جهت راست‌به‌چپ متن فارسی، تراز امن پاراگراف‌ها، وسط‌چین جدول‌ها، RTL بصری جدول‌های فارسی و حفظ Field/TOC. این حالت عمداً فونت و Style اختصاصی سند را حدس نمی‌زند. در خروجی، به‌روزرسانی خودکار Field هنگام بازشدن غیرفعال می‌شود تا Fieldها فقط با درخواست کاربر به‌روز شوند.</system:String>
+    <system:String x:Key="UiGenericRun">اصلاح عمومی RTL (سبک)</system:String>
+    <system:String x:Key="UiSmartRepairRun">تشخیص و اصلاح هوشمند</system:String>
+    <system:String x:Key="UiSmartRepairDescription">نوع سند را با اولویت متن و محتوا تشخیص می‌دهد، اطمینان را درصدی نمایش می‌دهد و پس از تأیید شما ممیزی، طرح اصلاح و Dry-run را در یک اجرای سریع و fail-closed انجام می‌دهد.</system:String>
+    <system:String x:Key="UiSmartRepairOperation">اصلاح هوشمند فارسی</system:String>
+    <system:String x:Key="UiSmartRepairConfirmFormat">پروفایل «{0}» با موفقیت انتخاب شد و طرح اصلاح امن آماده است. اصلاح کنترل‌شده فقط روی یک کپی انجام می‌شود. ادامه می‌دهید؟</system:String>
+    <system:String x:Key="UiSmartRepairFastConfirmFormat">پروفایل «{0}» از روی محتوا انتخاب شد. وردایجنت در همان اجرای سریع، ممیزی، طرح اصلاح، Dry-run و گیت‌های ایمنی را قبل از هر تغییر بررسی می‌کند و فقط روی یک کپی اصلاح می‌کند. ادامه می‌دهید؟</system:String>
+    <system:String x:Key="UiSmartRepairDetectionFailed">تشخیص قطعی نوع سند ممکن نشد. از بخش تخصصی، پروفایل را بررسی یا دستی انتخاب کنید.</system:String>
+    <system:String x:Key="UiSmartRepairPlanBlocked">طرح اصلاح امن آماده نشد؛ هیچ تغییری روی سند انجام نشد. جزئیات فارسی گزارش را بررسی کنید.</system:String>
+    <system:String x:Key="UiSmartRepairCompleted">اصلاح کنترل‌شده با موفقیت انجام شد. فایل خروجی برای بازبینی آماده است.</system:String>
+
+
+    <system:String x:Key="UiModeTemplateTab">اعمال تمپلیت</system:String>
+    <system:String x:Key="UiTemplateDescription">فایل ورودی و تمپلیت Word را انتخاب کنید. وردایجنت می‌تواند ابتدا قرارداد تمپلیت را تحلیل کند یا نسخه‌ای جدید از سند را با قواعد قطعی تمپلیت بسازد.</system:String>
+    <system:String x:Key="UiTemplateFileLabel">فایل تمپلیت:</system:String>
+    <system:String x:Key="UiSelectTemplate">انتخاب تمپلیت</system:String>
+    <system:String x:Key="UiTemplateFoundationNote">دامنه MVP اعمال تمپلیت: Page Size/Margin/Columns، تعریف Styleهای تمپلیت، نگاشت قطعی Heading/Title/Normal و Theme/FontTable در صورت وجود Part مقصد. متن، Field، تصویر، Header/Footer منبع، Numbering و Direct Formatting حفظ می‌شوند. انتقال Header/Footer و Numbering تمپلیت در گیت‌های بعدی اضافه می‌شود.</system:String>
+    <system:String x:Key="UiTemplateAnalyze">تحلیل تمپلیت و ساخت قرارداد</system:String>
+    <system:String x:Key="UiTemplateApply">اعمال تمپلیت روی نسخه جدید</system:String>
+
+    <system:String x:Key="UiAdvancedWorkflow">ابزار تخصصی پروفایل‌محور</system:String>
+    <system:String x:Key="UiAdvancedWorkflowNote">این بخش برای کنترل تخصصی مرحله‌به‌مرحله است. در تشخیص قطعی، پروفایل خودکار اعمال می‌شود؛ در نتیجه مبهم، انتخاب دستی لازم است.</system:String>
+    <system:String x:Key="UiProfileLabel">پروفایل:</system:String>
+    <system:String x:Key="UiSuggestionLabel">پیشنهاد:</system:String>
+    <system:String x:Key="UiUseSuggestion">استفاده از پیشنهاد</system:String>
+    <system:String x:Key="UiDetect">تشخیص نوع سند</system:String>
+    <system:String x:Key="UiAudit">ممیزی</system:String>
+    <system:String x:Key="UiSafePlan">طرح اصلاح ایمن</system:String>
+    <system:String x:Key="UiControlledFix">اصلاح کنترل‌شده</system:String>
+    <system:String x:Key="UiLayoutPlan">طرح‌بندی</system:String>
+    <system:String x:Key="UiLayoutFix">اصلاح کنترل‌شدهٔ طرح‌بندی</system:String>
+
+    <system:String x:Key="UiCancel">لغو عملیات</system:String>
+    <system:String x:Key="UiStatusReady">آماده</system:String>
+    <system:String x:Key="UiTechnicalDetails">جزئیات فنی و گزارش اجرا</system:String>
+    <system:String x:Key="UiUseResult">استفاده از نتیجه به‌عنوان ورودی</system:String>
+    <system:String x:Key="UiOpenResult">باز کردن نتیجه</system:String>
+    <system:String x:Key="UiOpenReport">باز کردن گزارش</system:String>
+    <system:String x:Key="UiOpenOutputFolder">باز کردن پوشه خروجی</system:String>
+
+    <system:String x:Key="UiRuntimePreparing">در حال آماده‌سازی هسته…</system:String>
+    <system:String x:Key="UiRuntimeReadyFormat">هسته آماده است — {0} پروفایل تخصصی نیز در بخش پیشرفته موجود است.</system:String>
+    <system:String x:Key="UiRuntimeError">راه‌اندازی هسته وردایجنت با خطا روبه‌رو شد. جزئیات فنی را بررسی کنید.</system:String>
+    <system:String x:Key="UiOpenFileTitle">انتخاب فایل Word</system:String>
+    <system:String x:Key="UiOpenFileFilter">سند Word (*.docx)|*.docx</system:String>
+    <system:String x:Key="UiOpenTemplateTitle">انتخاب تمپلیت Word</system:String>
+    <system:String x:Key="UiOpenFolderTitle">انتخاب پوشه خروجی</system:String>
+    <system:String x:Key="UiDetectionCompletedManual">تشخیص انجام شد؛ نتیجه قطعی نبود و انتخاب دستی لازم است.</system:String>
+    <system:String x:Key="UiDetectionAppliedFormat">نوع سند از روی محتوای متن شناسایی و پروفایل «{0}» خودکار اعمال شد.</system:String>
+    <system:String x:Key="UiContentDetectionPrefix">تشخیص محتوایی از متن</system:String>
+    <system:String x:Key="UiConfidenceFormat">اطمینان: {0}٪</system:String>
+    <system:String x:Key="UiManualSelectionShort">انتخاب دستی لازم است</system:String>
+    <system:String x:Key="UiDetectionDetected">نوع سند شناسایی شد</system:String>
+    <system:String x:Key="UiDetectionAmbiguous">نتیجه تشخیص قطعی نیست</system:String>
+    <system:String x:Key="UiDetectionNoMatch">پروفایل منطبق پیدا نشد</system:String>
+    <system:String x:Key="UiDetectionLowConfidence">اطمینان تشخیص پایین است</system:String>
+    <system:String x:Key="UiDetectionUnknown">وضعیت تشخیص نامشخص است</system:String>
+    <system:String x:Key="UiStatusRunningFormat">{0} در حال اجرا…</system:String>
+    <system:String x:Key="UiStatusSuccessFormat">{0}: موفق</system:String>
+    <system:String x:Key="UiStatusFailedFormat">{0}: ناموفق (کد خروج {1})</system:String>
+    <system:String x:Key="UiStatusCanceledFormat">{0}: لغو شد</system:String>
+    <system:String x:Key="UiStatusErrorFormat">{0}: خطا</system:String>
+    <system:String x:Key="UiElapsedFormat">زمان: {0}</system:String>
+    <system:String x:Key="UiDialogTitle">وردایجنت دسکتاپ</system:String>
+    <system:String x:Key="UiRuntimeMissingMessage">هسته وردایجنت پیدا نشد.</system:String>
+    <system:String x:Key="UiChooseDocxMessage">ابتدا فایل DOCX را انتخاب کنید.</system:String>
+    <system:String x:Key="UiChooseTemplateMessage">ابتدا فایل تمپلیت DOCX را انتخاب کنید.</system:String>
+    <system:String x:Key="UiChooseProfileMessage">پروفایل هنوز انتخاب نشده است. ابتدا «تشخیص نوع سند» را اجرا کنید؛ در نتیجه قطعی، پروفایل خودکار اعمال می‌شود.</system:String>
+    <system:String x:Key="UiOutputFolderMissingMessage">پوشه خروجی هنوز ایجاد نشده است.</system:String>
+    <system:String x:Key="UiCustomProfileFormat">پروفایل سفارشی {0}</system:String>
+    <system:String x:Key="UiCustomProfilePlain">پروفایل سفارشی</system:String>
+    <system:String x:Key="UiGenericOperation">فارسی‌سازی عمومی</system:String>
+    <system:String x:Key="UiTemplateOperation">تحلیل تمپلیت</system:String>
+    <system:String x:Key="UiTemplateApplyOperation">اعمال قطعی تمپلیت</system:String>
+
+    <system:String x:Key="ProfileFormalAdminTechnicalProposalFa">پیشنهاده رسمی/اداری/فنی</system:String>
+    <system:String x:Key="ProfileQuestionnaireAssessmentFa">پرسش‌نامه ارزیابی</system:String>
+    <system:String x:Key="ProfileThesisDissertationAcademicFa">رساله/پایان‌نامه دانشگاهی</system:String>
+    <system:String x:Key="ProfileProposalIndustrialFa">پیشنهاده صنعتی</system:String>
+    <system:String x:Key="ProfileProposalGovernanceFa">پیشنهاده حاکمیتی</system:String>
+    <system:String x:Key="ProfileProposalAcademicFa">پیشنهاده دانشگاهی</system:String>
+    <system:String x:Key="ProfileThesisDissertationPhdFa">رساله دکتری</system:String>
+    <system:String x:Key="ProfileBookUniversityFa">کتاب دانشگاهی</system:String>
+</ResourceDictionary>

@@ -1,0 +1,517 @@
+<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" x:Class="WordAgent.Desktop.MainWindow" Title="{DynamicResource UiWindowTitle}" Width="1480" Height="900" MinWidth="640" MinHeight="420" WindowStartupLocation="CenterScreen" AllowDrop="True" DragOver="Window_DragOver" Drop="Window_Drop" FlowDirection="RightToLeft" xml:lang="fa-IR" FontFamily="Tahoma, Segoe UI" FontSize="15" TextOptions.TextFormattingMode="Display" Background="#F4F7FB" UseLayoutRounding="True" SnapsToDevicePixels="True">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/StringResources.fa.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <SolidColorBrush x:Key="BgBrush" Color="#F4F7FB" />
+            <SolidColorBrush x:Key="SurfaceBrush" Color="#FFFFFF" />
+            <SolidColorBrush x:Key="SurfaceAltBrush" Color="#F8FAFC" />
+            <SolidColorBrush x:Key="BorderBrushModern" Color="#DCE4EF" />
+            <SolidColorBrush x:Key="TextBrush" Color="#14213D" />
+            <SolidColorBrush x:Key="MutedBrush" Color="#667085" />
+            <SolidColorBrush x:Key="PrimaryBrush" Color="#245FB5" />
+            <SolidColorBrush x:Key="PrimaryHoverBrush" Color="#2466C4" />
+            <SolidColorBrush x:Key="PrimarySoftBrush" Color="#EEF5FF" />
+            <SolidColorBrush x:Key="GreenBrush" Color="#126C60" />
+            <SolidColorBrush x:Key="GreenSoftBrush" Color="#EEF9F6" />
+            <SolidColorBrush x:Key="PurpleBrush" Color="#71319C" />
+            <SolidColorBrush x:Key="PurpleSoftBrush" Color="#F8F0FD" />
+            <SolidColorBrush x:Key="SuccessSoftBrush" Color="#ECFDF3" />
+            <SolidColorBrush x:Key="SuccessTextBrush" Color="#087A45" />
+
+            <Style x:Key="CardStyle" TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource SurfaceBrush}" />
+                <Setter Property="BorderBrush" Value="{StaticResource BorderBrushModern}" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="Padding" Value="20" />
+            </Style>
+
+            <Style x:Key="SidebarCardStyle" TargetType="Border" BasedOn="{StaticResource CardStyle}">
+                <Setter Property="Padding" Value="16" />
+                <Setter Property="CornerRadius" Value="14" />
+            </Style>
+
+            <Style x:Key="SectionTitleStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,0,0,10" />
+            </Style>
+
+            <Style x:Key="FieldLabelStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="FontSize" Value="13.5" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Margin" Value="0,0,0,6" />
+            </Style>
+
+            <Style x:Key="MutedTextStyle" TargetType="TextBlock">
+                <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+                <Setter Property="FontSize" Value="13" />
+                <Setter Property="TextWrapping" Value="Wrap" />
+            </Style>
+
+            <Style x:Key="ModernTextBoxStyle" TargetType="TextBox">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="BorderBrush" Value="#D8E0EA" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="12,8" />
+                <Setter Property="MinHeight" Value="40" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="TextBox">
+                            <Border x:Name="TextBoxBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="9">
+                                <ScrollViewer x:Name="PART_ContentHost" Margin="{TemplateBinding Padding}" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsKeyboardFocused" Value="True">
+                                    <Setter TargetName="TextBoxBorder" Property="BorderBrush" Value="{StaticResource PrimaryBrush}" />
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="TextBoxBorder" Property="Opacity" Value="0.58" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ModernComboStyle" TargetType="ComboBox">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="BorderBrush" Value="#D8E0EA" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="10,7" />
+                <Setter Property="MinHeight" Value="40" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+            </Style>
+
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="Foreground" Value="#344054" />
+                <Setter Property="BorderBrush" Value="#CFD8E4" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Padding" Value="14,8" />
+                <Setter Property="FontSize" Value="13.5" />
+                <Setter Property="MinHeight" Value="40" />
+                <Setter Property="Cursor" Value="Hand" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="9" Padding="{TemplateBinding Padding}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#163D69" /><Setter TargetName="ButtonBorder" Property="BorderThickness" Value="2" /></Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#163D69" /><Setter TargetName="ButtonBorder" Property="BorderThickness" Value="2" /></Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="ButtonBorder" Property="Opacity" Value="0.46" />
+                                </Trigger>
+                            <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="ButtonBorder" Property="BorderBrush" Value="#163D69" /><Setter TargetName="ButtonBorder" Property="BorderThickness" Value="2" /></Trigger></ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            <Setter Property="ContentTemplate"><Setter.Value><DataTemplate><TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center" /></DataTemplate></Setter.Value></Setter></Style>
+
+            <Style x:Key="SoftPrimaryButtonStyle" TargetType="Button" BasedOn="{StaticResource SecondaryButtonStyle}">
+                <Setter Property="Background" Value="{StaticResource PrimarySoftBrush}" />
+                <Setter Property="Foreground" Value="#0E5FA8" />
+                <Setter Property="BorderBrush" Value="#B9DDFC" />
+            </Style>
+
+            <Style x:Key="ActionButtonStyle" TargetType="Button" BasedOn="{StaticResource SecondaryButtonStyle}">
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="MinHeight" Value="46" />
+                <Setter Property="BorderThickness" Value="0" />
+            </Style>
+
+            <Style x:Key="ChipStyle" TargetType="Border">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="BorderBrush" Value="#DCE4EF" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="9" />
+                <Setter Property="Padding" Value="10,7" />
+                <Setter Property="Margin" Value="0,0,8,8" />
+            </Style>
+
+            <Style x:Key="ProfileChipButtonStyle" TargetType="Button" BasedOn="{StaticResource SecondaryButtonStyle}">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="Foreground" Value="{StaticResource TextBrush}" />
+                <Setter Property="BorderBrush" Value="#DCE4EF" />
+                <Setter Property="Padding" Value="12,7" />
+                <Setter Property="MinHeight" Value="36" />
+                <Setter Property="Margin" Value="0,0,8,8" />
+                <Setter Property="FontSize" Value="13.5" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+
+            <Style x:Key="MiniStatusStyle" TargetType="Border">
+                <Setter Property="Background" Value="#FFFFFF" />
+                <Setter Property="BorderBrush" Value="#E2E8F0" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Padding" Value="12" />
+                <Setter Property="Margin" Value="0,0,0,8" />
+            </Style>
+        <Style TargetType="TextBlock"><Setter Property="TextWrapping" Value="Wrap" /></Style></ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="WorkspaceRoot" FlowDirection="LeftToRight">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <Border Grid.Row="0" Background="#FFFFFF" BorderBrush="#DFE6EF" BorderThickness="0,0,0,1" Padding="28,14">
+            <Grid HorizontalAlignment="Stretch" x:Name="HeaderGrid">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions><Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" FlowDirection="RightToLeft" x:Name="HeaderUtilities">
+                    <Button Content="بررسی به‌روزرسانی" Click="IntegratedUpdateButton_Click" Style="{StaticResource SoftPrimaryButtonStyle}" MinWidth="150" />
+                    <StackPanel Margin="14,0,0,0">
+                        <TextBlock Text="{Binding ProductVersionText, RelativeSource={RelativeSource AncestorType=Window}}" Foreground="{StaticResource MutedBrush}" FontSize="11" />
+                        <TextBlock Text="وضعیت به‌روزرسانی تأیید نشده" Foreground="{StaticResource MutedBrush}" FontSize="11" Margin="0,3,0,0" x:Name="UpdateTrustStatus" />
+                    </StackPanel>
+                <Button Content="لغو عملیات" Click="Cancel_Click" IsEnabled="{Binding IsEnabled, ElementName=CancelButton}" Style="{StaticResource SecondaryButtonStyle}" Margin="8,0,0,0" AutomationProperties.Name="لغو عملیات جاری" /></StackPanel>
+
+                <TextBlock Grid.Column="1" Text="اسناد حرفه‌ای، با استاندارد فارسی، در چند کلیک" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="#5E6D82" FontSize="14" FlowDirection="RightToLeft" x:Name="HeaderTagline" />
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" FlowDirection="LeftToRight" VerticalAlignment="Center" x:Name="HeaderBrand">
+                    <Image Source="Assets/sleek_ai_document_app_icon.png" Width="52" Height="52" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality" Margin="0,0,14,0" />
+                    <StackPanel FlowDirection="RightToLeft" VerticalAlignment="Center">
+                        <TextBlock Text="{DynamicResource UiProductTitle}" Foreground="{StaticResource TextBrush}" FontSize="27" FontWeight="SemiBold" TextAlignment="Right" />
+                        <TextBlock Text="فارسی‌سازی، اعمال تمپلیت و زیباسازی هوشمند اسناد Word" Foreground="{StaticResource MutedBrush}" FontSize="12.5" Margin="0,3,0,0" TextAlignment="Right" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" HorizontalContentAlignment="Stretch" Focusable="False" x:Name="WorkspaceScroll">
+            <Grid Margin="24,16,24,12" HorizontalAlignment="Stretch" FlowDirection="LeftToRight" x:Name="ResponsiveWorkspaceGrid">
+                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions><Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="350" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Main workspace -->
+                <StackPanel Grid.Column="0" Margin="0,0,16,0" FlowDirection="RightToLeft" x:Name="MainWorkspacePanel">
+
+                    <!-- Document + profile setup -->
+                    <Border Style="{StaticResource CardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="تنظیمات سند و پروفایل" Style="{StaticResource SectionTitleStyle}" />
+
+                            <!-- Internal state holder; users select profiles from the direct chips below. -->
+                            <ComboBox x:Name="ProfileCombo" Visibility="Collapsed" IsTabStop="False" AutomationProperties.AutomationId="OutputProfileCombo" SelectionChanged="ProfileCombo_SelectionChanged" />
+
+                            <Grid FlowDirection="LeftToRight" x:Name="DocumentPickersGrid">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions><Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*" />
+                                    <ColumnDefinition Width="1.36*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Output -->
+                                <Grid x:Name="OutputPickerRtlGrid" Grid.Column="0" Margin="0,0,12,0" FlowDirection="RightToLeft">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="{DynamicResource UiOutputFolderLabel}" Style="{StaticResource FieldLabelStyle}" />
+                                    <Grid Grid.Row="1" FlowDirection="LeftToRight">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="OutputDirBox" Grid.Column="0" IsReadOnly="True" Style="{StaticResource ModernTextBoxStyle}" FlowDirection="LeftToRight" Margin="0,0,8,0" AutomationProperties.Name="پوشه خروجی" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" IsUndoEnabled="False" />
+                                        <Button Grid.Column="1" Content="{DynamicResource UiSelectFolder}" Click="BrowseOutput_Click" Style="{StaticResource SecondaryButtonStyle}" MinWidth="104" />
+                                    </Grid>
+                                </Grid>
+
+                                <!-- Input -->
+                                <Grid x:Name="InputPickerRtlGrid" Grid.Column="1" FlowDirection="RightToLeft">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" Text="{DynamicResource UiDocxLabel}" Style="{StaticResource FieldLabelStyle}" />
+                                    <Grid Grid.Row="1" FlowDirection="LeftToRight">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <TextBox x:Name="InputPathBox" Grid.Column="0" IsReadOnly="True" Style="{StaticResource ModernTextBoxStyle}" FlowDirection="LeftToRight" Margin="0,0,8,0" AutomationProperties.Name="مسیر فایل ورودی" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" IsUndoEnabled="False" />
+                                        <Button Grid.Column="1" Content="{DynamicResource UiSelectFile}" Click="BrowseInput_Click" Style="{StaticResource SecondaryButtonStyle}" MinWidth="104" />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+
+                            <Border Background="#F8FAFC" BorderBrush="#E5EAF1" BorderThickness="1" CornerRadius="11" Padding="12" Margin="0,14,0,0">
+                                <StackPanel>
+                                    <TextBlock Text="انتخاب مستقیم پروفایل" Foreground="{StaticResource TextBrush}" FontSize="14" FontWeight="SemiBold" />
+                                    <TextBlock Text="حالت هوشمند یا یکی از ۸ پروفایل تخصصی را مستقیماً انتخاب کنید." Style="{StaticResource MutedTextStyle}" Margin="0,3,0,9" />
+                                    <WrapPanel x:Name="ProfileChipPanel" AutomationProperties.AutomationId="ProfileChipPanel" FlowDirection="RightToLeft">
+                                        <Button x:Name="ProfileChipAuto" AutomationProperties.AutomationId="ProfileChipAuto" Content="هوشمند — تشخیص از متن و ساختار" Tag="__AUTO_OUTPUT_PROFILE__" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipBook" AutomationProperties.AutomationId="ProfileChipBook" Content="کتاب دانشگاهی" Tag="book.university.fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipReport" AutomationProperties.AutomationId="ProfileChipReport" Content="گزارش / سند رسمی، اداری و فنی" Tag="formal-admin-technical-proposal-fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipAcademicProposal" AutomationProperties.AutomationId="ProfileChipAcademicProposal" Content="پروپوزال دانشگاهی / دانشجویی" Tag="proposal.academic.fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipGovernance" AutomationProperties.AutomationId="ProfileChipGovernance" Content="پروپوزال حاکمیتی / راهبردی" Tag="proposal.governance.fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipIndustrial" AutomationProperties.AutomationId="ProfileChipIndustrial" Content="پروپوزال صنعتی" Tag="proposal.industrial.fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipQuestionnaire" AutomationProperties.AutomationId="ProfileChipQuestionnaire" Content="پرسشنامه / فرم ارزیابی" Tag="questionnaire-assessment-fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipThesis" AutomationProperties.AutomationId="ProfileChipThesis" Content="پایان‌نامه / رساله دانشگاهی" Tag="thesis-dissertation-academic-fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                        <Button x:Name="ProfileChipPhd" AutomationProperties.AutomationId="ProfileChipPhd" Content="رساله دکتری" Tag="thesis.dissertation.phd.fa" Click="ProfileChip_Click" Style="{StaticResource ProfileChipButtonStyle}" />
+                                    </WrapPanel>
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Public operations dashboard -->
+                    <Border x:Name="PublicOperationsRtlSurface" Style="{StaticResource CardStyle}" Margin="0,14,0,0" Padding="16" FlowDirection="LeftToRight">
+                        <StackPanel x:Name="PublicOperationsRtlContent" FlowDirection="LeftToRight">
+                            <TextBlock x:Name="PublicOperationsSectionTitle" Text="عملیات اصلی سند" Style="{StaticResource SectionTitleStyle}" FlowDirection="RightToLeft" TextAlignment="Right" />
+                            <TextBlock x:Name="PublicOperationsSectionIntro" Text="سه مسیر اصلی محصول در یک داشبورد؛ بدون چیدمان طولانی و تکراری." Style="{StaticResource MutedTextStyle}" FlowDirection="RightToLeft" TextAlignment="Right" Margin="0,0,0,12" />
+
+                            <Grid x:Name="OperationsGrid">
+                                <Grid.RowDefinitions><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /><RowDefinition Height="Auto" /></Grid.RowDefinitions><Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Template card -->
+                                <Border Grid.Column="0" Background="{StaticResource GreenSoftBrush}" BorderBrush="#BFE7DF" BorderThickness="1" CornerRadius="14" Padding="16" Margin="0,0,10,0" FlowDirection="RightToLeft" x:Name="TemplateCard">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="اعمال کامل تمپلیت" Foreground="{StaticResource TextBrush}" FontSize="19" FontWeight="SemiBold" />
+                                                <TextBlock Text="{DynamicResource UiTemplateDescription}" Style="{StaticResource MutedTextStyle}" Margin="0,6,0,0" />
+                                            </StackPanel>
+                                            <Border Grid.Column="1" Background="#DFF4EF" CornerRadius="11" Width="48" Height="48" Margin="10,0,0,0">
+                                                <TextBlock Text="T" Foreground="{StaticResource GreenBrush}" FontSize="24" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+
+                                        <WrapPanel x:Name="TemplateRtlChips" FlowDirection="RightToLeft" Margin="0,12,0,4">
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="سبک‌ها و استایل‌ها" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="فصل‌ها و شماره‌گذاری" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="سربرگ و پاورقی" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="حفظ متن و جداول" /></Border>
+                                        </WrapPanel>
+
+                                        <TextBlock x:Name="TemplateFileRtlLabel" Text="{DynamicResource UiTemplateFileLabel}" Style="{StaticResource FieldLabelStyle}" Margin="0,4,0,0" />
+                                        <Grid FlowDirection="LeftToRight" x:Name="TemplatePickerGrid">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <TextBox x:Name="TemplatePathBox" Grid.Column="0" IsReadOnly="True" Style="{StaticResource ModernTextBoxStyle}" FlowDirection="LeftToRight" Margin="0,0,8,0" AutomationProperties.Name="مسیر فایل تمپلیت" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" IsUndoEnabled="False" />
+                                            <Button Grid.Column="1" Content="{DynamicResource UiSelectTemplate}" Click="BrowseTemplate_Click" Style="{StaticResource SecondaryButtonStyle}" MinWidth="104" />
+                                        </Grid>
+
+                                        <Grid Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <Button x:Name="TemplateAnalyzeButton" Grid.Column="0" Content="بررسی تمپلیت" Click="TemplateAnalyze_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,6,0" />
+                                            <Button x:Name="TemplateApplyButton" Grid.Column="1" Content="اعمال تمپلیت" Click="TemplateApply_Click" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource GreenBrush}" Margin="6,0,0,0" />
+                                        </Grid>
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Generic Persianize card -->
+                                <Border Grid.Column="1" Background="#F3F7FF" BorderBrush="#C9DDF8" BorderThickness="1" CornerRadius="14" Padding="16" Margin="5,0" FlowDirection="RightToLeft" x:Name="GenericCard">
+                                    <StackPanel>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="فارسی‌سازی عمومی کامل" Foreground="{StaticResource TextBrush}" FontSize="19" FontWeight="SemiBold" />
+                                                <TextBlock Text="تبدیل متن به فارسی استاندارد، اصلاح حروف، اعداد، علائم و یکدست‌سازی متن؛ بدون نیاز به پروفایل." Style="{StaticResource MutedTextStyle}" Margin="0,6,0,0" />
+                                            </StackPanel>
+                                            <Border Grid.Column="1" Background="#E3EEFF" CornerRadius="11" Width="48" Height="48" Margin="10,0,0,0">
+                                                <TextBlock Text="ف" Foreground="{StaticResource PrimaryBrush}" FontSize="22" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+
+                                        <WrapPanel x:Name="GenericRtlChips" FlowDirection="RightToLeft" Margin="0,14,0,8">
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="راست‌چین" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="تبدیل اعداد" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="اصلاح علائم نگارشی" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="حفظ متن و فرمول‌ها" /></Border>
+                                        </WrapPanel>
+
+                                        <Border Background="#FFFFFF" BorderBrush="#DFE7F1" BorderThickness="1" CornerRadius="9" Padding="10" Margin="0,4,0,12">
+                                            <TextBlock Text="بدون نیاز به پروفایل؛ متن، اعداد، علائم و راست‌به‌چپ‌سازی را یکدست می‌کند." Style="{StaticResource MutedTextStyle}" TextAlignment="Right" />
+                                        </Border>
+
+                                        <Button x:Name="GenericPersianizeButton" Content="{DynamicResource UiGenericRun}" Click="GenericPersianize_Click" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource PrimaryBrush}" />
+                                    </StackPanel>
+                                </Border>
+
+                                <!-- Smart repair card -->
+                                <Border Grid.Column="2" Background="{StaticResource PurpleSoftBrush}" BorderBrush="#DFC9EF" BorderThickness="1" CornerRadius="14" Padding="16" Margin="10,0,0,0" FlowDirection="RightToLeft" x:Name="SmartCard">
+                                    <StackPanel x:Name="SmartRepairRtlPanel">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackPanel Grid.Column="0">
+                                                <TextBlock Text="اصلاح هوشمند پروفایل‌محور" Foreground="{StaticResource TextBrush}" FontSize="19" FontWeight="SemiBold" />
+                                                <TextBlock Text="بهینه‌سازی تخصصی سند با توجه به نوع محتوا و پروفایل انتخابی، با ممیزی و گیت‌های ایمنی." Style="{StaticResource MutedTextStyle}" Margin="0,6,0,0" />
+                                            </StackPanel>
+                                            <Border Grid.Column="1" Background="#F0DFF9" CornerRadius="11" Width="48" Height="48" Margin="10,0,0,0">
+                                                <TextBlock Text="✦" FontFamily="Segoe UI Symbol" Foreground="{StaticResource PurpleBrush}" FontSize="24" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            </Border>
+                                        </Grid>
+
+                                        <WrapPanel FlowDirection="RightToLeft" Margin="0,14,0,8">
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="تشخیص نوع محتوا" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="اصلاح ساختار سند" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="بهبود استایل‌ها" /></Border>
+                                            <Border Style="{StaticResource ChipStyle}"><TextBlock Text="استانداردسازی ارجاعات" /></Border>
+                                        </WrapPanel>
+
+                                        <Border Background="#FFFFFF" BorderBrush="#E7DDEE" BorderThickness="1" CornerRadius="9" Padding="10" Margin="0,4,0,12">
+                                            <TextBlock Text="بر اساس پروفایل انتخابی، ساختار و استایل‌های سند را با گیت‌های ایمنی اصلاح می‌کند." Style="{StaticResource MutedTextStyle}" TextAlignment="Right" />
+                                        </Border>
+
+                                        <Button x:Name="SmartRepairButton" Content="اجرای اصلاح هوشمند" Click="SmartRepair_Click" Style="{StaticResource ActionButtonStyle}" Background="{StaticResource PurpleBrush}" />
+                                    </StackPanel>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- Activity / report strip -->
+                    <Border Style="{StaticResource CardStyle}" Margin="0,14,0,0" Padding="14">
+                        <StackPanel>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="گزارش عملکرد" Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" FontSize="16" FlowDirection="RightToLeft" TextAlignment="Right" />
+                                <Button x:Name="CancelButton" Grid.Column="1" Content="{DynamicResource UiCancel}" Click="Cancel_Click" Style="{StaticResource SecondaryButtonStyle}" MinWidth="110" />
+                            </Grid>
+
+                            <ProgressBar x:Name="BusyBar" Height="5" Margin="0,10,0,0" IsIndeterminate="True" Visibility="Collapsed" />
+
+                            <Border Background="#F8FAFC" BorderBrush="#E6EBF2" BorderThickness="1" CornerRadius="9" Padding="10" Margin="0,10,0,0">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock x:Name="StatusText" AutomationProperties.AutomationId="OperationStatusText" Grid.Column="0" Text="در انتظار آماده‌سازی هسته و انتخاب سند" Foreground="#475467" TextWrapping="Wrap" FlowDirection="RightToLeft" TextAlignment="Right" AutomationProperties.LiveSetting="Polite" />
+                                    <TextBlock x:Name="ElapsedText" Grid.Column="1" Foreground="{StaticResource MutedBrush}" Margin="12,0,0,0" />
+                                </Grid>
+                            </Border>
+
+                            <Expander x:Name="TechnicalDetailsExpander" IsExpanded="False" Header="{DynamicResource UiTechnicalDetails}" Margin="0,8,0,0" FlowDirection="RightToLeft">
+                                <StackPanel Margin="0,8,0,0">
+                                    <TextBox x:Name="LogBox" MinHeight="170" MaxHeight="250" IsReadOnly="True" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" FontFamily="Tahoma, Segoe UI" FontSize="13" FlowDirection="RightToLeft" Style="{StaticResource ModernTextBoxStyle}" AutomationProperties.Name="گزارش فنی عملیات" ToolTip="{Binding Text, RelativeSource={RelativeSource Self}}" IsUndoEnabled="False" />
+
+                                    <WrapPanel Margin="0,10,0,0" FlowDirection="RightToLeft">
+                                        <Button x:Name="OpenResultButton" Content="{DynamicResource UiOpenResult}" Click="OpenResult_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                        <Button x:Name="UseResultButton" Content="{DynamicResource UiUseResult}" Click="UseResult_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                        <Button x:Name="OpenReportButton" Content="{DynamicResource UiOpenReport}" Click="OpenReport_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                        <Button x:Name="OpenFolderButton" Content="{DynamicResource UiOpenOutputFolder}" Click="OpenFolder_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                    </WrapPanel>
+
+                                    <Border Background="#FBFCFE" BorderBrush="#E5EAF1" BorderThickness="1" CornerRadius="10" Padding="12" Margin="0,8,0,0">
+                                        <StackPanel>
+                                            <TextBlock Text="{DynamicResource UiAdvancedWorkflow}" Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" />
+                                            <TextBlock Text="{DynamicResource UiAdvancedWorkflowNote}" Style="{StaticResource MutedTextStyle}" Margin="0,4,0,8" />
+                                            <WrapPanel FlowDirection="RightToLeft">
+                                                <Button x:Name="DetectButton" Content="{DynamicResource UiDetect}" Click="Detect_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                                <Button x:Name="AuditButton" Content="{DynamicResource UiAudit}" Click="Audit_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                                <Button x:Name="PlanButton" Content="{DynamicResource UiSafePlan}" Click="Plan_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                                <Button x:Name="LayoutPlanButton" Content="{DynamicResource UiLayoutPlan}" Click="LayoutPlan_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                                <Button x:Name="FixButton" Content="{DynamicResource UiControlledFix}" Click="Fix_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                                <Button x:Name="LayoutFixButton" Content="{DynamicResource UiLayoutFix}" Click="LayoutFix_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,8,8" />
+                                            </WrapPanel>
+                                        </StackPanel>
+                                    </Border>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <!-- Right sidebar -->
+                <StackPanel Grid.Column="1" FlowDirection="RightToLeft" x:Name="SidebarPanel">
+                    <Border Style="{StaticResource SidebarCardStyle}">
+                        <StackPanel>
+                            <TextBlock Text="وضعیت و خلاصه" Style="{StaticResource SectionTitleStyle}" FontSize="17" />
+
+                            <Border Style="{StaticResource MiniStatusStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="پروفایل انتخابی" Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="SelectedProfileSummaryText" AutomationProperties.AutomationId="SelectedProfileSummaryText" Text="هوشمند — تشخیص از متن و ساختار" Style="{StaticResource MutedTextStyle}" Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource MiniStatusStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="هسته و پروفایل‌ها" Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="RuntimeText" AutomationProperties.AutomationId="RuntimeHealthText" Text="{DynamicResource UiRuntimePreparing}" Style="{StaticResource MutedTextStyle}" Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Style="{StaticResource MiniStatusStyle}">
+                                <StackPanel>
+                                    <TextBlock Text="پیشنهاد هوشمند" Foreground="{StaticResource TextBrush}" FontWeight="SemiBold" />
+                                    <TextBlock x:Name="SuggestionText" Text="پس از انتخاب سند، پیشنهاد تشخیص در این بخش نمایش داده می‌شود." Style="{StaticResource MutedTextStyle}" Margin="0,4,0,8" />
+                                    <Button x:Name="UseSuggestionButton" Content="{DynamicResource UiUseSuggestion}" Click="UseSuggestion_Click" Style="{StaticResource SoftPrimaryButtonStyle}" />
+                                </StackPanel>
+                            </Border>
+
+                            <Border Background="#F8FAFC" BorderBrush="#DCE4EF" BorderThickness="1" CornerRadius="11" Padding="12">
+                                <StackPanel>
+                                    <TextBlock Text="وضعیت اجرا" Foreground="{StaticResource TextBrush}" FontSize="15" FontWeight="SemiBold" />
+                                    <TextBlock Text="{Binding Text, ElementName=StatusText}" Foreground="{Binding Foreground, ElementName=StatusText}" FontSize="12.5" TextWrapping="Wrap" Margin="0,4,0,0" />
+                                </StackPanel>
+                            </Border>
+                        </StackPanel>
+                    </Border>
+
+                    <Border Style="{StaticResource SidebarCardStyle}" Margin="0,12,0,0">
+                        <StackPanel>
+                            <TextBlock Text="دسترسی سریع" Style="{StaticResource SectionTitleStyle}" FontSize="16" />
+                            <Button Content="تشخیص نوع سند" Click="Detect_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,0,8" IsEnabled="{Binding IsEnabled, ElementName=DetectButton}" />
+                            <Button Content="باز کردن پوشه خروجی" Click="OpenFolder_Click" Style="{StaticResource SecondaryButtonStyle}" Margin="0,0,0,8" IsEnabled="{Binding IsEnabled, ElementName=OpenFolderButton}" />
+                            <Button Content="باز کردن آخرین نتیجه" Click="OpenResult_Click" Style="{StaticResource SecondaryButtonStyle}" IsEnabled="{Binding IsEnabled, ElementName=OpenResultButton}" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <!-- Footer -->
+        <Border Grid.Row="2" Background="#FFFFFF" BorderBrush="#DFE6EF" BorderThickness="0,1,0,0" Padding="22,9">
+            <TextBlock Text="وردایجنت دسکتاپ  |  طراحی‌شده برای اسناد علمی، اداری و حرفه‌ای فارسی" Foreground="{StaticResource MutedBrush}" FontSize="12.5" HorizontalAlignment="Center" TextAlignment="Center" FlowDirection="RightToLeft" />
+        </Border>
+    </Grid>
+</Window>

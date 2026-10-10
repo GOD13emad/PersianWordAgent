@@ -1,0 +1,8 @@
+{
+  "Product": "WordAgent",
+  "Channel": "rc",
+  "ManifestUrl": "",
+  "Repository": "OWNER/REPOSITORY",
+  "AssetPattern": "WordAgent-{PRODUCT_VERSION}-win-x64.zip",
+  "Note": "Replace {PRODUCT_VERSION} from the authoritative build-result.json when publishing/configuring the release channel; configure ManifestUrl and Repository only after publication."
+}

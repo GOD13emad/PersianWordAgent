@@ -1,0 +1,196 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "id": "questionnaire-assessment-fa",
+  "displayName": "پرسشنامه / فرم ارزیابی فارسی",
+  "version": "2.1.1",
+  "documentClass": "QuestionnaireAssessment",
+  "classification": {
+    "keywords": [
+      "پرسشنامه",
+      "امتیاز",
+      "شاهد",
+      "وضعیت موجود",
+      "ردیف",
+      "پاسخ",
+      "ارزیابی"
+    ],
+    "negativeKeywords": [],
+    "styleSignals": [
+      "متن",
+      "تیتر اول"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "متن",
+      "Normal"
+    ],
+    "Heading1": [
+      "تیتر اول",
+      "تيتر اول",
+      "Heading 1"
+    ],
+    "Heading2": [
+      "تیتر دوم",
+      "تيتر دوم",
+      "Heading 2"
+    ],
+    "Chapter": [
+      "فصل"
+    ],
+    "CoverText": [
+      "متن روي جلد",
+      "متن روی جلد"
+    ],
+    "TocTitle": [
+      "عنوان فهرست"
+    ],
+    "Toc1": [
+      "TOC 1",
+      "toc 1"
+    ],
+    "Toc2": [
+      "TOC 2",
+      "toc 2"
+    ],
+    "FigureTableCaption": [
+      "شکل - جدول",
+      "عنوان جدول"
+    ],
+    "TocLegacy1": [
+      "TOC 11",
+      "toc 11"
+    ],
+    "TocLegacy2": [
+      "TOC 21",
+      "toc 21"
+    ],
+    "TableNote": [
+      "یادداشت جدول",
+      "يادداشت جدول"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 12
+    },
+    "Heading1": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading2": {
+      "fontBi": "B Titr",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableBody": {
+      "alignment": null
+    },
+    "Chapter": {
+      "fontBi": "B Titr",
+      "sizeBi": 18,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "CoverText": {
+      "fontBi": "B Titr",
+      "sizeBi": 20,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc1": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc2": {
+      "fontBi": "B Titr",
+      "sizeBi": 11.5,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "FigureTableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 11,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "Invocation": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocLegacy1": {
+      "fontBi": "B Titr",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TocLegacy2": {
+      "fontBi": "B Titr",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableNote": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    }
+  },
+  "rules": [
+    "PARA-BODY-RTL-001",
+    "FONT-BODY-BI-001",
+    "TABLE-RTL-001",
+    "TABLE-CENTER-001",
+    "FIELD-PRESERVE-001",
+    "PROFILE-COMPLIANCE-001",
+    "SEMANTIC-CAPTION-GUARD-001",
+    "TOC-PARAGRAPHSTYLE-FALLBACK-001"
+  ],
+  "schemaVersion": "2.0",
+  "detectionPolicy": {
+    "enabled": true,
+    "priority": 100,
+    "minScore": 20
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": null
+    },
+    "invocation": {
+      "role": "Invocation",
+      "exactCompactTexts": [
+        "بسمهتعالی",
+        "بسمهتعالي",
+        "بسماللهالرحمنالرحیم",
+        "بسماللهالرحمنالرحيم"
+      ]
+    },
+    "coverSubtitle": {
+      "role": null,
+      "styleNames": [],
+      "maxParagraphIndex": null
+    },
+    "figureTableCaption": {
+      "role": "FigureTableCaption",
+      "prefixes": [
+        "جدول",
+        "شکل"
+      ],
+      "requireParenthesizedTwoPartNumber": true
+    }
+  }
+}

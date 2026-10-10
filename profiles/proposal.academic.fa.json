@@ -1,0 +1,330 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "schemaVersion": "2.0",
+  "id": "proposal.academic.fa",
+  "displayName": "پیشنهاده دانشگاهی / دانشجویی فارسی",
+  "version": "2.2.1",
+  "documentClass": "AcademicProposal",
+  "classification": {
+    "keywords": [
+      "پیشنهاده",
+      "پروپوزال دانشگاهی",
+      "پیشنهاده رساله",
+      "پیشنهاده رساله دکتری",
+      "روش تحقیق",
+      "مروری بر ادبیات",
+      "اهداف تحقیق",
+      "نوآوری پژوهش",
+      "زمان‌بندی پژوهش",
+      "اساتید راهنما"
+    ],
+    "negativeKeywords": [
+      "کارفرما",
+      "شرح خدمات",
+      "حاکمیت داده",
+      "کتاب دانشگاهی"
+    ],
+    "styleSignals": [
+      "متن",
+      "متن پيوسته",
+      "متن پیوسته",
+      "فصل",
+      "تيتر اول",
+      "تیتر اول",
+      "تيتر دوم",
+      "تیتر دوم",
+      "تيتر سوم",
+      "تیتر سوم",
+      "عنوان پايان‌نامه",
+      "عنوان پایان‌نامه",
+      "عنوان فهرست",
+      "زيرنويس شکل",
+      "زیرنویس شکل",
+      "بالانويس جدول",
+      "بالانویس جدول",
+      "شکل - جدول",
+      "پاورقي",
+      "پاورقی"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "متن",
+      "Normal",
+      "(unknown)"
+    ],
+    "BodyContinuous": [
+      "متن پيوسته",
+      "متن پیوسته"
+    ],
+    "Chapter": [
+      "فصل"
+    ],
+    "Heading1": [
+      "تيتر اول",
+      "تیتر اول",
+      "Heading 1"
+    ],
+    "Heading2": [
+      "تيتر دوم",
+      "تیتر دوم",
+      "Heading 2"
+    ],
+    "Heading3": [
+      "تيتر سوم",
+      "تیتر سوم",
+      "Heading 3"
+    ],
+    "DocumentTitle": [
+      "عنوان پايان‌نامه",
+      "عنوان پایان‌نامه",
+      "Title"
+    ],
+    "TocTitle": [
+      "عنوان فهرست"
+    ],
+    "Toc1": [
+      "TOC 1",
+      "toc 1"
+    ],
+    "Toc2": [
+      "TOC 2",
+      "toc 2"
+    ],
+    "FigureTableCaption": [
+      "شکل - جدول"
+    ],
+    "FigureCaption": [
+      "زيرنويس شکل",
+      "زیرنویس شکل",
+      "Caption"
+    ],
+    "TableCaption": [
+      "بالانويس جدول",
+      "بالانویس جدول"
+    ],
+    "Footnote": [
+      "پاورقي",
+      "پاورقی"
+    ],
+    "Formula": [
+      "فرمول"
+    ],
+    "Toc3": [
+      "TOC 3",
+      "toc 3"
+    ],
+    "ListOfFigures": [
+      "table of figures",
+      "Table of Figures"
+    ],
+    "Bibliography": [
+      "EndNote Bibliography"
+    ],
+    "NumberedList": [
+      "نشانه گذاري عددی",
+      "نشانه گذاری عددی"
+    ],
+    "EnglishBody": [
+      "متن (انگليسي)",
+      "متن (انگلیسی)"
+    ],
+    "CoverMetadata": [
+      "متن روي جلد",
+      "متن روی جلد",
+      "تاريخ روي جلد",
+      "تاریخ روی جلد"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 14
+    },
+    "BodyContinuous": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "JUSTIFY"
+    },
+    "Chapter": {
+      "fontBi": "B Titr",
+      "sizeBi": 30,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "Heading1": {
+      "fontBi": "B Titr",
+      "sizeBi": 18,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading2": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading3": {
+      "fontBi": "B Titr",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "DocumentTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 22,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "Toc1": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc2": {
+      "fontBi": "B Titr",
+      "sizeBi": 11.5,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "FigureTableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "FigureCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "TableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "Footnote": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 10,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Formula": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 11,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TableBody": {
+      "alignment": null
+    },
+    "TableHeader": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "Toc3": {
+      "fontBi": "B Titr",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "ListOfFigures": {
+      "fontBi": null,
+      "sizeBi": null,
+      "readingOrder": null,
+      "alignment": null
+    },
+    "Bibliography": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "NumberedList": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "EnglishBody": {
+      "fontBi": null,
+      "sizeBi": null,
+      "readingOrder": null,
+      "alignment": null
+    },
+    "CoverMetadata": {
+      "fontBi": null,
+      "sizeBi": null,
+      "readingOrder": null,
+      "alignment": null
+    }
+  },
+  "rules": [
+    "PARA-BODY-RTL-001",
+    "TABLE-RTL-001",
+    "TABLE-CENTER-001",
+    "PROFILE-COMPLIANCE-001",
+    "FIELD-PRESERVE-001",
+    "ENDNOTE-GUARD-001",
+    "SEMANTIC-CAPTION-GUARD-001",
+    "TOC-PARAGRAPHSTYLE-FALLBACK-001"
+  ],
+  "detectionPolicy": {
+    "enabled": true,
+    "priority": 90,
+    "minScore": 28
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": "TableHeader"
+    },
+    "invocation": {
+      "role": null,
+      "exactCompactTexts": []
+    },
+    "coverSubtitle": {
+      "role": null,
+      "styleNames": [],
+      "maxParagraphIndex": null
+    },
+    "figureTableCaption": {
+      "role": "FigureTableCaption",
+      "prefixes": [
+        "جدول",
+        "شکل"
+      ],
+      "requireParenthesizedTwoPartNumber": true
+    }
+  },
+  "layoutPolicy": {
+    "tableStyle": {
+      "enabled": true,
+      "theme": "LIGHT_BLUE",
+      "bandRows": true,
+      "centerTable": true,
+      "rtlVisual": true,
+      "verticalAlignment": "CENTER",
+      "headerAlignment": "CENTER",
+      "shortCellAlignment": "CENTER",
+      "longPersianAlignment": "RIGHT",
+      "longTextThreshold": 44,
+      "borderSize": 4
+    }
+  },
+  "editingPolicy": {
+    "mechanicalAuditEnabled": true,
+    "mutationEnabled": false,
+    "maxSamples": 250
+  }
+}

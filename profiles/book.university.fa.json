@@ -1,0 +1,155 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "schemaVersion": "2.0",
+  "id": "book.university.fa",
+  "displayName": "کتاب دانشگاهی فارسی",
+  "version": "2.0.2",
+  "documentClass": "UniversityBook",
+  "classification": {
+    "keywords": [
+      "کتاب",
+      "فصل",
+      "بخش",
+      "اهداف یادگیری",
+      "تمرین",
+      "مثال حل‌شده",
+      "پیوست",
+      "واژه‌نامه",
+      "منابع و مآخذ",
+      "راهنمای حل مسئله"
+    ],
+    "negativeKeywords": [
+      "رساله دکتری",
+      "پیشنهاده رساله",
+      "پروپوزال صنعتی",
+      "کارفرما"
+    ],
+    "styleSignals": [
+      "Normal",
+      "Title",
+      "Heading 1",
+      "Heading 2",
+      "List Bullet",
+      "List Number",
+      "Body Text"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "Normal",
+      "Body Text"
+    ],
+    "DocumentTitle": [
+      "Title"
+    ],
+    "Chapter": [
+      "Heading 1"
+    ],
+    "Heading1": [
+      "Heading 2"
+    ],
+    "Toc1": [
+      "TOC 1",
+      "toc 1"
+    ],
+    "Toc2": [
+      "TOC 2",
+      "toc 2"
+    ],
+    "ListBullet": [
+      "List Bullet"
+    ],
+    "ListNumber": [
+      "List Number"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 12
+    },
+    "DocumentTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 26,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "Chapter": {
+      "fontBi": "B Titr",
+      "sizeBi": 18,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading1": {
+      "fontBi": "B Titr",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc1": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc2": {
+      "fontBi": "B Titr",
+      "sizeBi": 11.5,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "ListBullet": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "ListNumber": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableBody": {
+      "alignment": "RIGHT"
+    },
+    "TableHeader": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    }
+  },
+  "rules": [
+    "PARA-BODY-RTL-001",
+    "TABLE-RTL-001",
+    "TABLE-CENTER-001",
+    "PROFILE-COMPLIANCE-001",
+    "FIELD-PRESERVE-001",
+    "ENDNOTE-GUARD-001"
+  ],
+  "detectionPolicy": {
+    "enabled": true,
+    "priority": 100,
+    "minScore": 28
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": "TableHeader"
+    },
+    "invocation": {
+      "role": null,
+      "exactCompactTexts": []
+    },
+    "coverSubtitle": {
+      "role": null,
+      "styleNames": [],
+      "maxParagraphIndex": null
+    },
+    "figureTableCaption": {
+      "role": null,
+      "prefixes": [],
+      "requireParenthesizedTwoPartNumber": false
+    }
+  },
+  "profileRevisionNote": "Canonical semantic heading taxonomy: Chapter->Heading 1; Heading1->Heading 2. QH01-E277 adds explicit Toc1/Toc2 semantic aliases and RTL defaults so Word-native TOC 1/TOC 2 paragraphs created by the required automatic TOC can be mapped and verified without weakening TOC-local integrity gates."
+}

@@ -1,0 +1,171 @@
+param(
+ [string]$InstallRoot=(Join-Path $env:LOCALAPPDATA 'Programs\WordAgent'),
+ [switch]$Silent,
+ [switch]$NoRegister
+)
+$ErrorActionPreference='Stop';Set-StrictMode -Version Latest
+$ExpectedZipSHA='__RELEASE_ZIP_SHA256__'
+$ReleaseZip=Join-Path $PSScriptRoot 'WordAgent-Release.zip'
+function Sha([string]$p){
+  $stream=[System.IO.File]::OpenRead($p)
+  try{
+    $sha256=[System.Security.Cryptography.SHA256]::Create()
+    try{
+      $bytes=$sha256.ComputeHash($stream)
+      return ([System.BitConverter]::ToString($bytes)).Replace('-','').ToUpperInvariant()
+    }finally{
+      if($null-ne$sha256){$sha256.Dispose()}
+    }
+  }finally{
+    if($null-ne$stream){$stream.Dispose()}
+  }
+}
+function Assert-Clean(){
+ $w=@(Get-Process WINWORD -ErrorAction SilentlyContinue);$d=@(Get-Process -Name 'WordAgent.Desktop' -ErrorAction SilentlyContinue)
+ if($w.Count-ne0-or$d.Count-ne0){throw ('Close Microsoft Word and WordAgent Desktop before install. WINWORD='+$w.Count+' Desktop='+$d.Count)}
+}
+function Assert-NoReparse([string]$path){
+ $cursor=[IO.Path]::GetFullPath($path)
+ while($cursor){
+  if(Test-Path -LiteralPath $cursor){$item=Get-Item -LiteralPath $cursor -Force;if(($item.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw ('REPARSE_PATH_REJECTED: '+$cursor)}}
+  $next=Split-Path -Parent $cursor;if($next-eq$cursor){break};$cursor=$next
+ }
+}
+function Assert-InstallTarget([string]$path){
+ if([string]::IsNullOrWhiteSpace($path)){throw 'EMPTY_INSTALL_ROOT'}
+ $full=[IO.Path]::GetFullPath($path).TrimEnd('\')
+ $protected=@([IO.Path]::GetPathRoot($full).TrimEnd('\'),$env:USERPROFILE,$env:LOCALAPPDATA,$env:APPDATA,$env:ProgramFiles,${env:ProgramFiles(x86)},$env:WINDIR)
+ foreach($item in $protected){if($item-and$full.Equals(([string]$item).TrimEnd('\'),[StringComparison]::OrdinalIgnoreCase)){throw 'PROTECTED_INSTALL_ROOT'}}
+ Assert-NoReparse $full
+ if(Test-Path -LiteralPath $full){
+  if(!(Test-Path -LiteralPath $full -PathType Container)){throw 'INSTALL_ROOT_IS_NOT_DIRECTORY'}
+  $marker=Join-Path $full '.wordagent-install-marker.json'
+  if(!(Test-Path -LiteralPath $marker -PathType Leaf)){throw 'EXISTING_ROOT_NOT_OWNED_BY_WORDAGENT'}
+  $identity=Get-Content -LiteralPath $marker -Raw -Encoding UTF8|ConvertFrom-Json
+  if([string]$identity.Product-ne'WordAgent'){throw 'EXISTING_ROOT_PRODUCT_MISMATCH'}
+ }
+}
+function Payload-Path([string]$root,[string]$relative){
+ if([string]::IsNullOrWhiteSpace($relative)-or[IO.Path]::IsPathRooted($relative)-or$relative.Contains(':')){throw 'INVALID_PAYLOAD_RELATIVE_PATH'}
+ $normalized=$relative.Replace('\','/')
+ foreach($part in $normalized.Split('/')){if($part-eq'..'-or$part-eq'.'){throw 'PAYLOAD_PATH_TRAVERSAL'}}
+ $base=[IO.Path]::GetFullPath($root).TrimEnd('\')+'\'
+ $full=[IO.Path]::GetFullPath((Join-Path $root $relative))
+ if(!$full.StartsWith($base,[StringComparison]::OrdinalIgnoreCase)){throw 'PAYLOAD_PATH_ESCAPE'}
+ return $full
+}
+function Assert-Zip([string]$zip,[string]$destination){
+ Add-Type -AssemblyName System.IO.Compression.FileSystem
+ $archive=[IO.Compression.ZipFile]::OpenRead($zip)
+ try{
+  $seen=New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+  [long]$total=0
+  if($archive.Entries.Count-gt10000){throw 'ZIP_ENTRY_LIMIT'}
+  foreach($entry in $archive.Entries){
+   $full=Payload-Path $destination $entry.FullName
+   if(!$seen.Add($full)){throw 'ZIP_DUPLICATE_PATH'}
+   if((($entry.ExternalAttributes-shr16)-band61440)-eq40960){throw 'ZIP_SYMBOLIC_LINK_REJECTED'}
+   $total+=$entry.Length;if($total-gt2147483648-or$entry.Length-gt1073741824){throw 'ZIP_EXPANSION_LIMIT'}
+  }
+ }finally{$archive.Dispose()}
+}
+function Verify-Payload([string]$root){
+ $mp=Join-Path $root 'release-manifest.json';if(!(Test-Path -LiteralPath $mp -PathType Leaf)){throw 'release-manifest.json missing'}
+ $m=Get-Content -LiteralPath $mp -Raw -Encoding UTF8|ConvertFrom-Json
+ if([string]$m.Product-ne'WordAgent'-or[string]::IsNullOrWhiteSpace([string]$m.ProductVersion)-or[int]$m.Sequence-le0){throw 'PAYLOAD_IDENTITY_INVALID'}
+ $seen=New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
+ foreach($e in @($m.Files)){
+  $p=Payload-Path $root ([string]$e.Path)
+  if(!$seen.Add($p)){throw 'MANIFEST_DUPLICATE_PATH'}
+  if([string]$e.Path-eq'.wordagent-install-marker.json'-or[string]$e.Path-eq'release-manifest.json'){throw 'RESERVED_MANIFEST_ENTRY'}
+  if([string]$e.SHA256-notmatch'^[0-9A-Fa-f]{64}$'){throw 'INVALID_PAYLOAD_HASH_FORMAT'}
+  if(!(Test-Path -LiteralPath $p -PathType Leaf)){throw ('payload file missing '+$e.Path)}
+  if((Sha $p)-ne[string]$e.SHA256){throw ('payload hash mismatch '+$e.Path)}
+  if($e.PSObject.Properties['Size'] -and [long]$e.Size-ne(Get-Item -LiteralPath $p).Length){throw ('payload size mismatch '+$e.Path)}
+ }
+ if($seen.Count-eq0){throw 'EMPTY_PAYLOAD_MANIFEST'}
+ foreach($file in @(Get-ChildItem -LiteralPath $root -Recurse -File -Force)){
+  if(($file.Attributes-band[IO.FileAttributes]::ReparsePoint)-ne0){throw 'PAYLOAD_REPARSE_POINT'}
+  if($file.FullName-ne$mp-and!$seen.Contains($file.FullName)){throw ('UNLISTED_PAYLOAD_FILE: '+$file.Name)}
+ }
+ foreach($required in @('desktop\WordAgent.Desktop.exe','desktop\dist\win-x64\WordAgent.exe','Uninstall-WordAgent.ps1')){
+  if(!$seen.Contains((Payload-Path $root $required))){throw ('REQUIRED_PAYLOAD_FILE_MISSING: '+$required)}
+ }
+ return $m
+}
+Assert-Clean
+if(!(Test-Path -LiteralPath $ReleaseZip -PathType Leaf)){throw 'WordAgent-Release.zip missing next to installer'}
+if((Sha $ReleaseZip)-ne$ExpectedZipSHA){throw 'Release ZIP SHA256 mismatch'}
+$InstallRoot=[IO.Path]::GetFullPath($InstallRoot).TrimEnd('\');Assert-InstallTarget $InstallRoot;$parent=Split-Path -Parent $InstallRoot
+New-Item -ItemType Directory -Force -Path $parent|Out-Null
+$txn=Join-Path $parent ('.wordagent-install-'+[guid]::NewGuid().ToString('N'));$extract=Join-Path $txn 'extract';New-Item -ItemType Directory -Force -Path $extract|Out-Null
+$backup=$null;$installPlaced=$false;$registrationStarted=$false
+$registrationBackup=Join-Path $txn 'registration';New-Item -ItemType Directory -Path $registrationBackup|Out-Null
+$registryPath='HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\WordAgent'
+$registryExisted=$false;$registryValues=@();$shortcutBackups=@()
+try{
+ Assert-Zip $ReleaseZip $extract
+ [IO.Compression.ZipFile]::ExtractToDirectory($ReleaseZip,$extract)
+ $dirs=@(Get-ChildItem $extract -Directory);if($dirs.Count-ne1){throw 'release ZIP must contain exactly one product root'}
+ $payload=$dirs[0].FullName;$m=Verify-Payload $payload
+ if(Test-Path -LiteralPath $InstallRoot){
+  $existing=Get-Content -LiteralPath (Join-Path $InstallRoot '.wordagent-install-marker.json') -Raw -Encoding UTF8|ConvertFrom-Json
+  if([int]$m.Sequence-lt[int]$existing.Sequence){throw 'INSTALL_DOWNGRADE_REJECTED'}
+  if([int]$m.Sequence-eq[int]$existing.Sequence-and[string]$m.ProductVersion-ne[string]$existing.Version){throw 'INSTALL_SEQUENCE_VERSION_COLLISION'}
+ }
+ if(!$NoRegister){
+  $registryExisted=Test-Path -LiteralPath $registryPath
+  if($registryExisted){
+   $ownedKey=Get-Item -LiteralPath $registryPath;$ownedLocation=[string]$ownedKey.GetValue('InstallLocation')
+   if(!$ownedLocation-or[IO.Path]::GetFullPath($ownedLocation).TrimEnd('\')-ne$InstallRoot){throw 'EXISTING_REGISTRY_NOT_OWNED'}
+  }
+  if($registryExisted){$key=Get-Item -LiteralPath $registryPath;foreach($name in $key.GetValueNames()){$registryValues+=@{Name=$name;Value=$key.GetValue($name);Kind=$key.GetValueKind($name)}}}
+  $shortcutPaths=@((Join-Path ([Environment]::GetFolderPath('DesktopDirectory')) 'WordAgent.lnk'),(Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\WordAgent\WordAgent.lnk'))
+  $wsInspect=New-Object -ComObject WScript.Shell
+  foreach($shortcut in $shortcutPaths){
+   if(Test-Path -LiteralPath $shortcut){
+    $target=$wsInspect.CreateShortcut($shortcut).TargetPath
+    if(!$target-or![IO.Path]::GetFullPath($target).StartsWith($InstallRoot+'\',[StringComparison]::OrdinalIgnoreCase)){throw 'EXISTING_SHORTCUT_NOT_OWNED'}
+    $save=Join-Path $registrationBackup ([guid]::NewGuid().ToString('N')+'.lnk');Copy-Item -LiteralPath $shortcut -Destination $save
+    $shortcutBackups+=@{Path=$shortcut;Existed=$true;Backup=$save}
+   }else{$shortcutBackups+=@{Path=$shortcut;Existed=$false;Backup=$null}}
+  }
+ }
+ Assert-InstallTarget $InstallRoot
+ if(Test-Path -LiteralPath $InstallRoot){$backup=$InstallRoot+'.rollback-'+[guid]::NewGuid().ToString('N').Substring(0,8);if(Test-Path -LiteralPath $backup){throw 'BACKUP_COLLISION'};Move-Item -LiteralPath $InstallRoot -Destination $backup}
+ Move-Item -LiteralPath $payload -Destination $InstallRoot
+ $installPlaced=$true
+ $marker=[ordered]@{Product='WordAgent';Version=[string]$m.ProductVersion;Sequence=[int]$m.Sequence;InstalledAt=(Get-Date).ToString('o');ReleaseZipSHA256=$ExpectedZipSHA}
+ $marker|ConvertTo-Json -Depth 10|Set-Content -LiteralPath (Join-Path $InstallRoot '.wordagent-install-marker.json') -Encoding UTF8
+ if(!$NoRegister){
+   $registrationStarted=$true
+   $desktopExe=Join-Path $InstallRoot 'desktop\WordAgent.Desktop.exe';if(!(Test-Path $desktopExe)){throw 'Desktop executable missing after install'}
+   $ws=New-Object -ComObject WScript.Shell
+   $desk=[Environment]::GetFolderPath('DesktopDirectory');$lnk=$ws.CreateShortcut((Join-Path $desk 'WordAgent.lnk'));$lnk.TargetPath=$desktopExe;$lnk.WorkingDirectory=(Split-Path $desktopExe -Parent);$lnk.IconLocation=$desktopExe;$lnk.Save()
+   $sm=Join-Path $env:APPDATA 'Microsoft\Windows\Start Menu\Programs\WordAgent';New-Item -ItemType Directory -Force -Path $sm|Out-Null;$lnk2=$ws.CreateShortcut((Join-Path $sm 'WordAgent.lnk'));$lnk2.TargetPath=$desktopExe;$lnk2.WorkingDirectory=(Split-Path $desktopExe -Parent);$lnk2.IconLocation=$desktopExe;$lnk2.Save()
+   $uk='HKCU:\Software\Microsoft\Windows\CurrentVersion\Uninstall\WordAgent';New-Item -Path $uk -Force|Out-Null;Set-ItemProperty $uk DisplayName 'WordAgent';Set-ItemProperty $uk DisplayVersion ([string]$m.ProductVersion);Set-ItemProperty $uk Publisher 'WordAgent';Set-ItemProperty $uk InstallLocation $InstallRoot;Set-ItemProperty $uk NoModify 1;Set-ItemProperty $uk NoRepair 1;Set-ItemProperty $uk UninstallString ('powershell.exe -NoProfile -ExecutionPolicy Bypass -File "'+(Join-Path $InstallRoot 'Uninstall-WordAgent.ps1')+'"')
+ }
+ if($backup-and(Test-Path -LiteralPath $backup)){Write-Output ('ROLLBACK_BACKUP='+$backup)}
+ try{if(Test-Path -LiteralPath $txn){Remove-Item -LiteralPath $txn -Recurse -Force}}catch{Write-Warning ('INSTALL_SUCCEEDED_CLEANUP_DEFERRED: '+$txn+'; '+$_.Exception.Message)}
+ if(!$Silent){Write-Host ('WordAgent installed: '+$InstallRoot)}
+ exit 0
+}catch{
+ $originalError=$_
+ try{
+  if($registrationStarted){
+   foreach($link in $shortcutBackups){if($link.Existed){Copy-Item -LiteralPath $link.Backup -Destination $link.Path -Force}else{if(Test-Path -LiteralPath $link.Path){Remove-Item -LiteralPath $link.Path -Force}}}
+   if(Test-Path -LiteralPath $registryPath){Remove-Item -LiteralPath $registryPath -Recurse -Force}
+   if($registryExisted){New-Item -Path $registryPath -Force|Out-Null;foreach($entry in $registryValues){New-ItemProperty -LiteralPath $registryPath -Name $entry.Name -Value $entry.Value -PropertyType $entry.Kind -Force|Out-Null}}
+  }
+  if($installPlaced-and(Test-Path -LiteralPath $InstallRoot)){
+   $failed=Join-Path $txn 'failed-install';if(Test-Path -LiteralPath $failed){throw 'FAILED_INSTALL_QUARANTINE_COLLISION'}
+   Move-Item -LiteralPath $InstallRoot -Destination $failed
+  }
+  if($backup-and(Test-Path -LiteralPath $backup)){
+   if(Test-Path -LiteralPath $InstallRoot){throw 'ROLLBACK_TARGET_ALREADY_EXISTS'}
+   Move-Item -LiteralPath $backup -Destination $InstallRoot
+  }
+ }catch{throw ('ROLLBACK_UNRESOLVED; original='+$originalError.Exception.Message+'; rollback='+$_.Exception.Message+'; evidence='+$txn)}
+ throw $originalError
+}
+

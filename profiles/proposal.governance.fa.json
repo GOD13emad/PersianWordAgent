@@ -1,0 +1,302 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "id": "proposal.governance.fa",
+  "displayName": "پیشنهاده حاکمیتی / راهبری فارسی",
+  "version": "2.1.1",
+  "documentClass": "GovernanceProposal",
+  "classification": {
+    "keywords": [
+      "حاکمیت داده",
+      "راهبری داده",
+      "سیاست",
+      "چارچوب",
+      "کمیته",
+      "مالک داده",
+      "متولی داده",
+      "مدل عملیاتی",
+      "نقش و مسئولیت",
+      "بلوغ",
+      "کنترل",
+      "استاندارد",
+      "داده مرجع",
+      "کیفیت داده",
+      "معماری داده"
+    ],
+    "negativeKeywords": [
+      "رساله دکتری",
+      "پایان‌نامه",
+      "پیشنهاده رساله",
+      "تمرین پایان فصل",
+      "پرسشنامه",
+      "فرم ارزیابی"
+    ],
+    "styleSignals": [
+      "متن",
+      "فصل",
+      "تيتر اول",
+      "تیتر اول",
+      "تيتر دوم",
+      "تیتر دوم",
+      "شکل - جدول",
+      "عنوان فهرست"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "متن",
+      "Normal",
+      "متن ضخيم"
+    ],
+    "BodyContinuous": [
+      "متن پیوسته",
+      "متن پيوسته"
+    ],
+    "Chapter": [
+      "فصل"
+    ],
+    "Heading1": [
+      "تیتر اول",
+      "تيتر اول"
+    ],
+    "Heading2": [
+      "تیتر دوم",
+      "تيتر دوم"
+    ],
+    "Heading3": [
+      "تیتر سوم",
+      "تيتر سوم"
+    ],
+    "DocumentTitle": [
+      "عنوان سند",
+      "Title"
+    ],
+    "CoverText": [
+      "متن روي جلد",
+      "متن روی جلد"
+    ],
+    "TocTitle": [
+      "عنوان فهرست"
+    ],
+    "Toc1": [
+      "TOC 1",
+      "toc 1"
+    ],
+    "Toc2": [
+      "TOC 2",
+      "toc 2"
+    ],
+    "FigureTableCaption": [
+      "شکل - جدول",
+      "عنوان جدول"
+    ],
+    "FigureCaption": [
+      "زیرنویس شکل",
+      "زيرنويس شکل"
+    ],
+    "TableCaption": [
+      "بالانویس جدول",
+      "بالانويس جدول"
+    ],
+    "TocLegacy1": [
+      "TOC 11",
+      "toc 11"
+    ],
+    "TocLegacy2": [
+      "TOC 21",
+      "toc 21"
+    ],
+    "TableNote": [
+      "یادداشت جدول",
+      "يادداشت جدول"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 12
+    },
+    "BodyContinuous": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "JUSTIFY"
+    },
+    "Chapter": {
+      "fontBi": "B Titr",
+      "sizeBi": 18,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading1": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading2": {
+      "fontBi": "B Titr",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading3": {
+      "fontBi": "B Titr",
+      "sizeBi": 13,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "DocumentTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 22,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "CoverText": {
+      "fontBi": "B Titr",
+      "sizeBi": 20,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc1": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc2": {
+      "fontBi": "B Titr",
+      "sizeBi": 11.5,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableBody": {
+      "alignment": null
+    },
+    "FigureTableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "FigureCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "TableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "Invocation": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "CoverSubtitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TableHeader": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    },
+    "TocLegacy1": {
+      "fontBi": "B Titr",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TocLegacy2": {
+      "fontBi": "B Titr",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableNote": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    }
+  },
+  "rules": [
+    "PARA-BODY-RTL-001",
+    "FONT-BODY-BI-001",
+    "TABLE-RTL-001",
+    "TABLE-CENTER-001",
+    "PROFILE-COMPLIANCE-001",
+    "FIELD-PRESERVE-001",
+    "ENDNOTE-GUARD-001",
+    "SEMANTIC-CAPTION-GUARD-001",
+    "TOC-PARAGRAPHSTYLE-FALLBACK-001"
+  ],
+  "schemaVersion": "2.0",
+  "detectionPolicy": {
+    "enabled": true,
+    "priority": 90,
+    "minScore": 28
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": "TableHeader"
+    },
+    "invocation": {
+      "role": "Invocation",
+      "exactCompactTexts": [
+        "بسمهتعالی",
+        "بسمهتعالي",
+        "بسماللهالرحمنالرحیم",
+        "بسماللهالرحمنالرحيم"
+      ]
+    },
+    "coverSubtitle": {
+      "role": "CoverSubtitle",
+      "styleNames": [
+        "متن ضخيم",
+        "متن ضخیم"
+      ],
+      "maxParagraphIndex": 20
+    },
+    "figureTableCaption": {
+      "role": "FigureTableCaption",
+      "prefixes": [
+        "جدول",
+        "شکل"
+      ],
+      "requireParenthesizedTwoPartNumber": true
+    }
+  },
+  "layoutPolicy": {
+    "tableStyle": {
+      "enabled": true,
+      "theme": "LIGHT_BLUE",
+      "bandRows": true,
+      "centerTable": true,
+      "rtlVisual": true,
+      "verticalAlignment": "CENTER",
+      "headerAlignment": "CENTER",
+      "shortCellAlignment": "CENTER",
+      "longPersianAlignment": "RIGHT",
+      "longTextThreshold": 44,
+      "borderSize": 4
+    }
+  },
+  "editingPolicy": {
+    "mechanicalAuditEnabled": true,
+    "mutationEnabled": false,
+    "maxSamples": 250
+  }
+}

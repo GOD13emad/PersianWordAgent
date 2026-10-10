@@ -1,0 +1,88 @@
+{
+  "fieldPolicy": {
+    "preserve": true,
+    "updateTocOnRequestOnly": true
+  },
+  "language": "fa-IR",
+  "layoutPolicy": {
+    "appendixTables": {
+      "cellMarginTwips": 70,
+      "enabled": true,
+      "fitToTextWidth": true,
+      "fixedLayout": true,
+      "landscapeWideTables": {
+        "enabled": true,
+        "strategy": "FINAL_WIDE_TAIL_ONLY"
+      },
+      "normalizeCellMargins": true,
+      "rtlVisual": true,
+      "tableAlignment": "CENTER",
+      "wideDetection": {
+        "minAverageColumnWidthTwips": 1200,
+        "minColumns": 7
+      }
+    },
+    "tablePagination": {
+      "columnPenaltyStart": 6,
+      "columnPenaltyWeight": 100,
+      "compactMaxRows": 12,
+      "compactScoreThreshold": 1050,
+      "enabled": true,
+      "keepCaptionWithTable": true,
+      "minBodyRowsAtEnd": 2,
+      "minBodyRowsAtStart": 2,
+      "noRowSplit": true,
+      "repeatHeader": true,
+      "rowPenaltyStart": 8,
+      "rowPenaltyWeight": 120
+    },
+    "toc": {
+      "compactStyles": true,
+      "enabled": true,
+      "spacing": {
+        "afterTwips": 0,
+        "beforeTwips": 0,
+        "lineRule": "auto",
+        "lineTwips": 240
+      },
+      "startBodyOnNewPage": true,
+      "titleTexts": [
+        "فهرست مطالب"
+      ]
+    }
+  },
+  "outputPolicy": {
+    "backupRequired": true,
+    "overwriteOriginal": false
+  },
+  "referencePolicy": {
+    "allowedModes": [
+      "IEEE_STRICT",
+      "IEEE_BILINGUAL_FA"
+    ],
+    "manualRenumber": false,
+    "owner": "EndNote"
+  },
+  "roleDefaults": {
+    "Body": {
+      "alignment": "JUSTIFY",
+      "fontBi": "B Nazanin",
+      "readingOrder": "RTL"
+    },
+    "TableBody": {
+      "fontBi": "B Nazanin",
+      "readingOrder": "RTL",
+      "sizeBi": null
+    }
+  },
+  "semanticPolicy": {
+    "appendix": {
+      "headingPrefixes": [
+        "پیوست"
+      ]
+    },
+    "tableRoles": {
+      "bodyRole": "TableBody"
+    }
+  }
+}

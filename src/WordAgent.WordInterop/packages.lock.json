@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dependencies": {
+    "net10.0-windows7.0": {
+      "Microsoft.Office.Interop.Word": {
+        "type": "Direct",
+        "requested": "[15.0.4797.1004, )",
+        "resolved": "15.0.4797.1004",
+        "contentHash": "lavTOrMGK/o/t3+gGr7JuVrL8XDdnS0DwPLcYv/StOiysXO4L0C36IXTVtEJo1Mh9Aoxo9a8dgGcPi+faTlv0g=="
+      },
+      "wordagent.core": {
+        "type": "Project"
+      }
+    },
+    "net10.0-windows7.0/win-x64": {}
+  }
+}

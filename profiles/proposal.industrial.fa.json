@@ -1,0 +1,266 @@
+{
+  "extends": ".bases/generic.fa.json",
+  "id": "proposal.industrial.fa",
+  "displayName": "پروپوزال صنعتی فارسی",
+  "version": "2.2.0",
+  "documentClass": "IndustrialProposal",
+  "classification": {
+    "keywords": [
+      "پروپوزال صنعتی",
+      "پروژه صنعتی",
+      "کارفرما",
+      "شرح خدمات",
+      "ساخت",
+      "تجهیزات",
+      "نمونه اولیه",
+      "پیاده‌سازی",
+      "تحویل‌دادنی",
+      "بودجه",
+      "زمان‌بندی",
+      "آزمایش"
+    ],
+    "intentKeywords": [
+      "پروپوزال صنعتی",
+      "پروژه صنعتی",
+      "کارفرما",
+      "شرح خدمات",
+      "تحویل‌دادنی",
+      "بودجه"
+    ],
+    "negativeKeywords": [
+      "رساله دکتری",
+      "پایان‌نامه",
+      "پرسشنامه",
+      "فرم ارزیابی"
+    ],
+    "styleSignals": [
+      "متن",
+      "فصل",
+      "تيتر اول",
+      "تیتر اول",
+      "تيتر دوم",
+      "تیتر دوم",
+      "شکل - جدول",
+      "متن روي جلد",
+      "متن روی جلد",
+      "عنوان فهرست"
+    ]
+  },
+  "roleAliases": {
+    "Body": [
+      "متن",
+      "Normal",
+      "متن ضخيم"
+    ],
+    "BodyContinuous": [
+      "متن پیوسته",
+      "متن پيوسته"
+    ],
+    "Chapter": [
+      "فصل"
+    ],
+    "Heading1": [
+      "تیتر اول",
+      "تيتر اول"
+    ],
+    "Heading2": [
+      "تیتر دوم",
+      "تيتر دوم"
+    ],
+    "Heading3": [
+      "تیتر سوم",
+      "تيتر سوم"
+    ],
+    "DocumentTitle": [
+      "عنوان سند",
+      "Title"
+    ],
+    "CoverText": [
+      "متن روي جلد",
+      "متن روی جلد"
+    ],
+    "TocTitle": [
+      "عنوان فهرست"
+    ],
+    "Toc1": [
+      "TOC 1",
+      "toc 1"
+    ],
+    "Toc2": [
+      "TOC 2",
+      "toc 2"
+    ],
+    "FigureTableCaption": [
+      "شکل - جدول"
+    ],
+    "FigureCaption": [
+      "زیرنویس شکل",
+      "زيرنويس شکل"
+    ],
+    "TableCaption": [
+      "بالانویس جدول",
+      "بالانويس جدول"
+    ],
+    "TableNote": [
+      "یادداشت جدول",
+      "يادداشت جدول"
+    ]
+  },
+  "roleDefaults": {
+    "Body": {
+      "sizeBi": 12
+    },
+    "BodyContinuous": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "JUSTIFY"
+    },
+    "Chapter": {
+      "fontBi": "B Titr",
+      "sizeBi": 18,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading1": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading2": {
+      "fontBi": "B Titr",
+      "sizeBi": 14,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Heading3": {
+      "fontBi": "B Titr",
+      "sizeBi": 13,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "DocumentTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 22,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "CoverText": {
+      "fontBi": "B Titr",
+      "sizeBi": 20,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TocTitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 16,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc1": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "Toc2": {
+      "fontBi": "B Titr",
+      "sizeBi": 11.5,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableBody": {
+      "alignment": "RIGHT"
+    },
+    "FigureTableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 11,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "FigureCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 11,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TableCaption": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 11,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "Invocation": {
+      "fontBi": "B Nazanin",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "CoverSubtitle": {
+      "fontBi": "B Titr",
+      "sizeBi": 12,
+      "readingOrder": "RTL",
+      "alignment": "CENTER"
+    },
+    "TableHeader": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": "RIGHT"
+    },
+    "TableNote": {
+      "fontBi": "B Nazanin",
+      "sizeBi": null,
+      "readingOrder": "RTL",
+      "alignment": null
+    }
+  },
+  "rules": [
+    "PARA-BODY-RTL-001",
+    "FONT-BODY-BI-001",
+    "TABLE-RTL-001",
+    "TABLE-CENTER-001",
+    "PROFILE-COMPLIANCE-001",
+    "FIELD-PRESERVE-001",
+    "ENDNOTE-GUARD-001",
+    "SEMANTIC-CAPTION-GUARD-001",
+    "TOC-PARAGRAPHSTYLE-FALLBACK-001"
+  ],
+  "schemaVersion": "2.0",
+  "detectionPolicy": {
+    "enabled": true,
+    "priority": 80,
+    "minScore": 28
+  },
+  "semanticPolicy": {
+    "tableRoles": {
+      "firstRowRole": "TableHeader"
+    },
+    "invocation": {
+      "role": "Invocation",
+      "exactCompactTexts": [
+        "بسمهتعالی",
+        "بسمهتعالي",
+        "بسماللهالرحمنالرحیم",
+        "بسماللهالرحمنالرحيم"
+      ]
+    },
+    "coverSubtitle": {
+      "role": "CoverSubtitle",
+      "styleNames": [
+        "متن ضخيم",
+        "متن ضخیم"
+      ],
+      "maxParagraphIndex": 20
+    },
+    "figureTableCaption": {
+      "role": "FigureTableCaption",
+      "prefixes": [
+        "جدول",
+        "شکل"
+      ],
+      "requireParenthesizedTwoPartNumber": true
+    }
+  }
+}
