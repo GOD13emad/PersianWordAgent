@@ -10,7 +10,7 @@
 
 ## Current release
 
-**Persian WordAgent 1.0.0**
+**Persian WordAgent 1.0.0** — the current GitHub Latest release (tag `v1.0.0-qh01-preview`).
 
 - Windows x64
 - Microsoft Word desktop required for Word-native operations
@@ -18,13 +18,19 @@
 
 ### Download
 
-Download the Windows package from the repository's **Releases** page:
+[Download the official Windows package from the current release](https://github.com/GOD13emad/PersianWordAgent/releases/tag/v1.0.0-qh01-preview):
 
 `PersianWordAgent-v1.0.0-Windows-x64.zip`
 
 SHA-256:
 
 `0DFF8B2FAD92DE03DB91C33BDCC8FCA6914ECF1B4B8D41694952D4ECED336906`
+
+### Test and prerelease builds
+
+[WordAgent 2.0.0-rc10](https://github.com/GOD13emad/PersianWordAgent/releases/tag/v2.0.0-rc10) is a test/prerelease candidate, not a final supported release. Its installer is unsigned and independent GitHub-mode installation testing remains open. Follow the release-specific verification instructions; do not disable Windows security protections.
+
+نسخهٔ ۱٫۰٫۰ در بخش Latest گیت‌هاب قرار دارد؛ نسخهٔ ۲٫۰٫۰-rc10 آزمایشی است و جایگزین انتشار فعلی محسوب نمی‌شود.
 
 ## Capabilities
 
