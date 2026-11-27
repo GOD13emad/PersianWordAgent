@@ -10,10 +10,10 @@ Do **not** publish confidential Word documents, credentials, access tokens, priv
 
 If you need to report a security problem:
 
-1. Open a minimal GitHub issue with the prefix `[SECURITY]`.
-2. Describe the affected PersianWordAgent release and the general issue without including secrets or private documents.
-3. Do not attach sensitive reproduction files publicly.
-4. The maintainer can arrange a private follow-up channel if additional evidence is required.
+1. Open the repository’s [private vulnerability reporting form](https://github.com/GOD13emad/PersianWordAgent/security/advisories/new) (Security → Report a vulnerability).
+2. Include the affected release, impact and a minimized reproduction using synthetic or redacted documents.
+3. Never attach confidential Word documents, credentials or customer data.
+4. If the form is unavailable, request a confidential contact channel without disclosing vulnerability details in a public issue.
 
 ## Official binaries
 
